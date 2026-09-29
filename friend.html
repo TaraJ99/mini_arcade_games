@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two Player RPS</title>
+<link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+    <h1>🎮 Two Player Rock Paper Scissors</h1>
+
+    <div class="buttons">
+        <button onclick="playGame('rock')">🪨 Rock</button>
+        <button onclick="playGame('paper')">📄 Paper</button>
+        <button onclick="playGame('scissors')">✂️ Scissors</button>
+    </div>
+
+    <div class="result">
+        <div id="player">Player 1 Choice: </div>
+        <div id="computer">Player 2 Choice: </div>
+    </div>
+
+    <div id="winner">Winner: </div>
+
+    <div id="scoreboard">
+        <div id="player1Score">Player 1 Score: 0</div>
+        <div id="player2Score">Player 2 Score: 0</div>
+    </div>
+
+    <button id="resetBtn" onclick="resetGame()">Reset Game 🔄</button>
+    <button onclick="window.location.href='index.html'">⬅️ Back to Main Menu</button>
+    <script>
+        let player1Choice = "";
+        let player2Choice = "";
+        let player1Score = 0;
+        let player2Score = 0;
+
+        function playGame(choice) {
+            if(player1Choice === "") {
+                player1Choice = choice;
+                document.getElementById("player").innerText = "Player 1 Choice: " + player1Choice;
+                alert("Player 1 has chosen. Player 2, it's your turn!");
+            } else {
+                player2Choice = choice;
+                document.getElementById("computer").innerText = "Player 2 Choice: " + player2Choice;
+
+                let winnerText = "";
+
+                if(player1Choice === player2Choice) {
+                    winnerText = "It's a draw!";
+                } else if (
+                    (player1Choice === 'rock' && player2Choice === 'scissors') ||
+                    (player1Choice === 'paper' && player2Choice === 'rock') ||
+                    (player1Choice === 'scissors' && player2Choice === 'paper')
+                ) {
+                    winnerText = "Player 1 wins this round!";
+                    player1Score++;
+                } else {
+                    winnerText = "Player 2 wins this round!";
+                    player2Score++;
+                }
+
+                document.getElementById("winner").innerText = "Winner: " + winnerText;
+                document.getElementById("player1Score").innerText = "Player 1 Score: " + player1Score;
+                document.getElementById("player2Score").innerText = "Player 2 Score: " + player2Score;
+
+                if(player1Score === 5 || player2Score === 5) {
+                    let finalWinner = player1Score === 5 ? "🎉 PLAYER 1 WINS THE GAME! 🎉" : "🎉 PLAYER 2 WINS THE GAME! 🎉";
+                    alert(finalWinner);
+                    resetGame();
+                }
+
+                player1Choice = "";
+                player2Choice = "";
+            }
+        }
+
+        function resetGame() {
+            player1Choice = "";
+            player2Choice = "";
+            player1Score = 0;
+            player2Score = 0;
+            document.getElementById("player").innerText = "Player 1 Choice: ";
+            document.getElementById("computer").innerText = "Player 2 Choice: ";
+            document.getElementById("winner").innerText = "Winner: ";
+            document.getElementById("player1Score").innerText = "Player 1 Score: 0";
+            document.getElementById("player2Score").innerText = "Player 2 Score: 0";
+        }
+    </script>
+
+</body>
+</html>

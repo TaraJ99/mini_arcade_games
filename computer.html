@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play vs Computer</title>
+    <link rel="stylesheet" href="game.css">
+    </head>
+<body>
+
+    <h1>🎮 Play vs Computer</h1>
+
+    <div class="buttons">
+        <button onclick="playGame('rock')">🪨 Rock</button>
+        <button onclick="playGame('paper')">📄 Paper</button>
+        <button onclick="playGame('scissors')">✂️ Scissors</button>
+    </div>
+
+    <div id="choices">
+        <div id="player">Your Choice: ???</div>
+        <div id="computerChoice">Computer Choice: ???</div>
+    </div>
+
+    <div id="winner">Winner: </div>
+
+    <div id="scoreboard">
+        <div id="playerScore">You: 0</div>
+        <div id="computerScore">Computer: 0</div>
+    </div>
+
+    <button id="resetBtn" onclick="resetGame()">Reset Game 🔄</button>
+    <button onclick="window.location.href='index.html'">⬅️ Back to Main Menu</button>
+    <script>
+        let playerChoice = "";
+        let computerChoice = "";
+        let playerScore = 0;
+        let computerScore = 0;
+
+        function playGame(choice) {
+            playerChoice = choice;
+            document.getElementById("player").innerText = "Your Choice: ???";
+
+            // Computer randomly picks
+            const choices = ['rock','paper','scissors'];
+            computerChoice = choices[Math.floor(Math.random() * 3)];
+
+            // Reveal both choices
+            document.getElementById("player").innerText = "Your Choice: " + playerChoice;
+            document.getElementById("computerChoice").innerText = "Computer Choice: " + computerChoice;
+
+            let winnerText = "";
+
+            if(playerChoice === computerChoice){
+                winnerText = "It's a draw!";
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ){
+                winnerText = "You win this round!";
+                playerScore++;
+            } else {
+                winnerText = "Computer wins this round!";
+                computerScore++;
+            }
+
+            document.getElementById("winner").innerText = "Winner: " + winnerText;
+            document.getElementById("playerScore").innerText = "You: " + playerScore;
+            document.getElementById("computerScore").innerText = "Computer: " + computerScore;
+
+            if(playerScore === 5 || computerScore === 5){
+                let finalWinner = playerScore === 5 ? "🎉 YOU WIN THE GAME! 🎉" : "💀 COMPUTER WINS THE GAME! 💀";
+                alert(finalWinner);
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+            playerChoice = "";
+            computerChoice = "";
+            playerScore = 0;
+            computerScore = 0;
+            document.getElementById("player").innerText = "Your Choice: ???";
+            document.getElementById("computerChoice").innerText = "Computer Choice: ???";
+            document.getElementById("winner").innerText = "Winner: ";
+            document.getElementById("playerScore").innerText = "You: 0";
+            document.getElementById("computerScore").innerText = "Computer: 0";
+        }
+    </script>
+
+</body>
+</html>

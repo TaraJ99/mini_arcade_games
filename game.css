@@ -1,0 +1,92 @@
+/* ====== Universal Game CSS ====== */
+
+/* Body & Title */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(to right, #43cea2, #185a9d); /* default gradient, can override per page */
+}
+
+h1 {
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+/* Game Buttons (Rock, Paper, Scissors) */
+.buttons button {
+    padding: 15px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: #ffdd59;
+    color: black;
+    font-weight: bold;
+}
+
+.buttons button:hover {
+    transform: scale(1.1);
+}
+
+/* Reset & Go Back Buttons */
+#resetBtn, #backBtn {
+    padding: 15px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: #ffdd59;
+    color: black;
+    font-weight: bold;
+    width: 200px; /* all buttons same width */
+}
+
+#resetBtn:hover, #backBtn:hover {
+    transform: scale(1.1);
+}
+
+/* Scoreboard Layout */
+#scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 50px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#scoreboard div {
+    width: 45%;
+}
+
+/* Choices Layout */
+#choices {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#choices div {
+    width: 45%;
+    font-size: 20px;
+}
+
+/* Winner Text */
+#winner {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
